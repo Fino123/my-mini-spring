@@ -1,4 +1,4 @@
-package com.minis.main.java;
+package com.minis.main.java.beans.factory.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

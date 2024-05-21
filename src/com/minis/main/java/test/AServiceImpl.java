@@ -1,4 +1,4 @@
-package com.minis.main.java;
+package com.minis.main.java.test;
 
 public class AServiceImpl implements AService {
     public void sayHello() {
