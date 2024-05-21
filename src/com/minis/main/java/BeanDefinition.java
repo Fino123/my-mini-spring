@@ -1,4 +1,4 @@
-package com.minis;
+package com.minis.main.java;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
