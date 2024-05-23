@@ -10,10 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationEventPublisher{
-    private final BeanFactory beanFactory;
+    private final SimpleBeanFactory beanFactory;
+
+    public ClassPathXmlApplicationContext(String fileName) {
+        this(fileName, true);
+    }
 
     //Context类负责利用beanFactory注册对象和获取对象
-    public ClassPathXmlApplicationContext(String fileName) {
+    public ClassPathXmlApplicationContext(String fileName, boolean refresh) {
         //读取beans定义源文件
         Resource resource = new ClassPathXmlResource(fileName);
         //构造bean工厂
@@ -22,6 +26,13 @@ public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationE
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
         reader.loadBeanDefinitions(resource);
         this.beanFactory = beanFactory;
+        if (refresh){
+            try {
+                this.beanFactory.refresh();
+            }catch (BeansException e){
+                log.error("Context初始化单例池失败，{}", e.getMessage());
+            }
+        }
     }
 
     @Override
