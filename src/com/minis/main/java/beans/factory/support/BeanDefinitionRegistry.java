@@ -1,4 +1,4 @@
-package com.minis.main.java.beans;
+package com.minis.main.java.beans.factory.support;
 
 import com.minis.main.java.beans.factory.config.BeanDefinition;
 

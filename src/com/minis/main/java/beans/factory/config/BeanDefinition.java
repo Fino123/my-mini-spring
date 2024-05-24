@@ -1,6 +1,5 @@
 package com.minis.main.java.beans.factory.config;
 
-import com.minis.main.java.beans.ArgumentValues;
 import com.minis.main.java.beans.PropertyValues;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,9 +10,10 @@ import lombok.Getter;
 public class BeanDefinition {
     String SCOPE_SINGLETON = "singleton";
     String SCOPE_PROTOTYPE = "prototype";
+    @Getter
     private boolean lazyInit = false;
     private String[] dependsOn;
-    private ArgumentValues constructorArgumentValues;
+    private ConstructorArgumentValues constructorArgumentValues;
     private PropertyValues propertyValues;
     private String initMethodName;
     private volatile Object beanClass;
@@ -34,7 +34,4 @@ public class BeanDefinition {
         return scope.equals(SCOPE_PROTOTYPE);
     }
 
-    public boolean isLazyInit() {
-        return lazyInit;
-    }
 }

@@ -12,7 +12,7 @@
         <property type="com.minis.main.java.test.AServiceImpl" name="as" ref="aservice" />
     </bean>
     <bean id="baseservice" class="com.minis.main.java.test.BaseService">
-        <property type="com.minis.main.java.test.BaseBaseService" name="bbs"
-                  ref="basebaseservice" />
+<!--        <property type="com.minis.main.java.test.BaseBaseService" name="bbs"-->
+<!--                  ref="basebaseservice" />-->
     </bean>
 </beans>

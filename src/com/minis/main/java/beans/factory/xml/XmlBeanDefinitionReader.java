@@ -1,23 +1,22 @@
 package com.minis.main.java.beans.factory.xml;
 
-import com.minis.main.java.beans.ArgumentValue;
-import com.minis.main.java.beans.ArgumentValues;
+import com.minis.main.java.beans.factory.config.ConstructorArgumentValues;
 import com.minis.main.java.beans.PropertyValue;
 import com.minis.main.java.beans.PropertyValues;
-import com.minis.main.java.beans.factory.BeanFactory;
 import com.minis.main.java.beans.factory.config.BeanDefinition;
+import com.minis.main.java.beans.factory.support.AbstractBeanFactory;
+import com.minis.main.java.beans.factory.support.AutowireCapableBeanFactory;
 import com.minis.main.java.beans.factory.support.SimpleBeanFactory;
 import com.minis.main.java.core.Resource;
 import org.dom4j.Element;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class XmlBeanDefinitionReader {
-    private SimpleBeanFactory beanFactory;
+    private AbstractBeanFactory beanFactory;
 
-    public XmlBeanDefinitionReader(SimpleBeanFactory beanFactory) {
+    public XmlBeanDefinitionReader(AbstractBeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
 
@@ -26,7 +25,9 @@ public class XmlBeanDefinitionReader {
             Element element = (Element) resource.next();
             String beanID = element.attributeValue("id");
             String beanClassName = element.attributeValue("class");
+            String initMethod = element.attributeValue("init-method");
             BeanDefinition beanDefinition = new BeanDefinition(beanID, beanClassName);
+            beanDefinition.setInitMethodName(initMethod);
             // 处理属性
             List<Element> propertyElements = element.elements("property");
             PropertyValues propertyValues = new PropertyValues();
@@ -57,7 +58,7 @@ public class XmlBeanDefinitionReader {
 
             // 处理构造器参数
             List<Element> argumentElements = element.elements("construct-arg");
-            ArgumentValues argumentValues = new ArgumentValues();
+            ConstructorArgumentValues argumentValues = new ConstructorArgumentValues();
             for (Element e: argumentElements) {
                 String argumentName = e.attributeValue("name");
                 String argumentValue = e.attributeValue("value");

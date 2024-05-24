@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SimpleBeanFactoryConstant {
+public class BeanFactoryConstant {
     // init大小
     public static int INIT_BEAN_DEFINITION_REGISTRY_SIZE = 256;
     public static int INIT_EARLY_SINGLETON_OBJECT_REGISTRY_SIZE = 16;

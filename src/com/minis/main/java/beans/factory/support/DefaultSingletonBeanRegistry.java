@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.minis.main.java.beans.factory.constant.DefaultSingletonBeanRegistryConstant;
+import com.minis.main.java.beans.factory.constant.BeanRegistryConstant;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -16,7 +16,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     protected List<String> beanNames = new ArrayList<>();
     //容器中存放所有bean实例的map
     protected Map<String, Object> singletons =
-            new ConcurrentHashMap<>(DefaultSingletonBeanRegistryConstant.INIT_DEFAULT_SINGLETON_BEAN_REGISTRY_SIZE);
+            new ConcurrentHashMap<>(BeanRegistryConstant.INIT_DEFAULT_SINGLETON_BEAN_REGISTRY_SIZE);
 
     public void registerSingleton(String beanName, Object singletonObject) {
         synchronized (this.singletons) {
